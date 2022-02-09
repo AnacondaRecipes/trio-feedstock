@@ -1,5 +1,5 @@
 {% set name = "trio" %}
-{% set version = "0.18.0" %}
+{% set version = "0.19.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,38 +7,39 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 87a66ae61f27fe500c9024926a9ba482c07e1e0f56380b70a264d19c435ba076
+  sha256: 895e318e5ec5e8cea9f60b473b6edb95b215e82d99556a03eb2d20c5e027efe1
 
 build:
-  skip: true  # [py<35]
+  skip: true  # [py<36]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
-    - attrs >=19.2.0
-    - sortedcontainers
     - async_generator >=1.9
+    - attrs >=19.2.0
+    - cffi >=1.14  # [win]
     - contextvars >=2.1  # [py<37]
     - idna
     - outcome
     - sniffio
-    - cffi >=1.14  # [win]
+    - sortedcontainers
 
 test:
   imports:
     - trio
-    - trio._core
-    - trio._core.tests
-    - trio._core.tests.test_multierror_scripts
     - trio.testing
     - trio.tests
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/python-trio/trio
