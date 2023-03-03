@@ -1,16 +1,16 @@
 {% set name = "trio" %}
-{% set version = "0.19.0" %}
+{% set version = "0.22.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 895e318e5ec5e8cea9f60b473b6edb95b215e82d99556a03eb2d20c5e027efe1
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/trio-{{ version }}.tar.gz
+  sha256: ce68f1c5400a47b137c5a4de72c7c901bd4e7a24fbdebfe9b41de8c6c04eaacf
 
 build:
-  skip: true  # [py<36]
+  skip: true  # [py<37]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
@@ -30,6 +30,7 @@ requirements:
     - outcome
     - sniffio
     - sortedcontainers
+    - exceptiongroup >=1.0.0rc9  # [py<311]
 
 test:
   imports:
@@ -46,7 +47,10 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: An async/await-native I/O library for humans and snake people
+  summary: Trio – a friendly Python library for async concurrency and I/O
+  description: |
+    The Trio project aims to produce a production-quality, permissively licensed, 
+    async/await-native I/O library for Python.
   doc_url: https://trio.readthedocs.io/
   dev_url: https://github.com/python-trio/trio
 
