@@ -42,8 +42,8 @@ test:
     - async_generator >= 1.9
     - astor
     - isort
-    - pyopenssl >=22.0.0,<23.0.0
-    - cryptography >=35.0 # for the ssl + DTLS tests
+    - pyopenssl
+    - cryptography  # for the ssl + DTLS tests
     - trustme               # for the ssl + DTLS tests
   commands:
     - pip check
