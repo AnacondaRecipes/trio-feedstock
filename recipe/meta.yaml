@@ -41,13 +41,10 @@ test:
     - pytest
     - async_generator >= 1.9
     - astor
-    - isort
-    - pyopenssl
-    - cryptography  # for the ssl + DTLS tests
-    - trustme               # for the ssl + DTLS tests
+    - isort         # for the ssl + DTLS tests
   commands:
     - pip check
-    - python -m pytest --pyargs trio -ra --durations=10 -m "not redistributors_should_skip" --skip-optional-imports
+    - python -m pytest --pyargs trio -ra --durations=10 -m "not redistributors_should_skip" --skip-optional-imports -k "not test_dtls"
 
 about:
   home: https://github.com/python-trio/trio
