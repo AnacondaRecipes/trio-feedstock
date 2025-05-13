@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/trio-{{ version }}.tar.gz
   sha256: 0781c857c0c81f8f51e0089929a26b5bb63d57f927728a5586f7e36171f064df
+  patches:
+    - patches/filterwarnings.patch
 
 build:
   skip: true  # [py<39]
@@ -15,6 +17,9 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:
+    - patch  # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -41,10 +46,12 @@ test:
     - pytest
     - async_generator >= 1.9
     - astor
-    - isort         # for the ssl + DTLS tests
+    - isort
+    - pyopenssl >= 22.0.0   # for the ssl + DTLS tests
+    - trustme       # for the ssl + DTLS tests
   commands:
     - pip check
-    - python -m pytest --pyargs trio -ra --durations=10 -m "not redistributors_should_skip" --skip-optional-imports -k "not test_dtls"
+    - python -m pytest --pyargs trio -ra --durations=10 -m "not redistributors_should_skip" --skip-optional-imports --disable-warnings
 
 about:
   home: https://github.com/python-trio/trio
