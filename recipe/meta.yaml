@@ -8,6 +8,7 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/trio-{{ version }}.tar.gz
   sha256: 0781c857c0c81f8f51e0089929a26b5bb63d57f927728a5586f7e36171f064df
+   # Ignore deprecation warnings from test dependencies (pyOpenSSL/trustme) that block test collection
   patches:
     - patches/filterwarnings.patch
 
