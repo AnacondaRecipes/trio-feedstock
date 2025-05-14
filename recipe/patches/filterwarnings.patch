@@ -1,0 +1,13 @@
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -9,6 +9,10 @@
+   'ignore:You are using cryptography on a 32-bit Python on a 64-bit Windows Operating System. Cryptography will be significantly faster if you switch to using a 64-bit Python.:UserWarning',
+   # https://github.com/berkerpeksag/astor/issues/217
+   'ignore:ast.Num is deprecated:DeprecationWarning:astor',
++  # Temporary ignores for pyOpenSSL deprecation warnings
++  'ignore:Passing pyOpenSSL PKey objects is deprecated. You should use a cryptography private key instead.:DeprecationWarning',
++  # Additional warning that appears during test collection
++  'ignore:Passing pyOpenSSL X509 objects is deprecated. You should use a cryptography.x509.Certificate instead.:DeprecationWarning',
+ ]
+ junit_family = "xunit2"
+ markers = ["redistributors_should_skip: tests that should be skipped by downstream redistributors"]
