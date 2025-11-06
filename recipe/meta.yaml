@@ -63,8 +63,9 @@ test:
     - isort
     - pyopenssl >= 22.0.0  # for the ssl + DTLS tests
     - trustme  # for the ssl + DTLS tests
-    - ruff
-    - pyyaml
+    - ruff   # [unix]
+    - black  # [py<314 and unix]
+    - pyyaml    
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
