@@ -38,18 +38,6 @@ test:
     - pyproject.toml
   imports:
     - trio
-    - trio._channel
-    - trio._core
-    - trio._dtls
-    - trio._file_io
-    - trio._highlevel_open_tcp_stream
-    - trio._highlevel_open_unix_stream
-    - trio._repl
-    - trio._socket
-    - trio._ssl
-    - trio._tests
-    - trio._tools
-    - trio._util
     - trio.abc
     - trio.lowlevel
     - trio.socket
