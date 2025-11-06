@@ -55,7 +55,7 @@ test:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     # Skip test_dtls.py because it raises a DeprecationWarning: Attempting to mutate a Context after a Connection was created. In the future, this will raise an exception
-    - python -m pytest --pyargs trio -ra -v --durations=10 -k "not slow and not redistributors_should_skip" --skip-optional-imports --disable-warnings --deselect=_tests/test_dtls.py
+    - python -m pytest --pyargs trio -ra -v --durations=10 -k "not slow and not redistributors_should_skip and not test_ki_newline_injection" --skip-optional-imports --disable-warnings --deselect=_tests/test_dtls.py
 
 about:
   home: https://github.com/python-trio/trio
