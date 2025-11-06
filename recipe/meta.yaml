@@ -64,7 +64,6 @@ test:
     - pyopenssl >= 22.0.0  # for the ssl + DTLS tests
     - trustme  # for the ssl + DTLS tests
     - ruff
-    - black  # [py<314]
     - pyyaml
   commands:
     - pip check
