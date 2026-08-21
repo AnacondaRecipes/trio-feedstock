@@ -25,11 +25,11 @@ requirements:
   run:
     - python
     - attrs >=23.2.0
-    - cffi >=1.14  # [win]
+    - sortedcontainers
     - idna
     - outcome
     - sniffio >=1.3.0
-    - sortedcontainers
+    - cffi >=1.14  # [win]
     - exceptiongroup  # [py<311]
 
 test:
